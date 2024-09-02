@@ -14,7 +14,7 @@ externalDocs:
   description: Find out more about Swagger
   url: http://swagger.io
 servers:
-  - url: https://connecttoazure.azure-api.net/user-mgmt/api/v1
+  - url: https://connecttoazure.azure-api.net/v1/user-mgmt/api
 tags:
   - name: user-management
     description: Manage your users

@@ -446,5 +446,5 @@ components:
   securitySchemes:
     apikey:
       type: apiKey
-      name: apikey
+      name: Ocp-Apim-Subscription-Key
       in: header

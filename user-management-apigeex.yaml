@@ -97,15 +97,6 @@ paths:
                     status: 404
                     error: Not Found
                     path: /api/v1/userss
-      security:
-        - apikey: []
-    patch:
-      tags:
-        - users
-      summary: Patch users
-      description: ''
-      operationId: patchUsers
-      responses:
         '405':
           description: Method not allowed
           content:
@@ -116,7 +107,9 @@ paths:
                     timestamp: 2024-06-13T13:55:57.906+00:00
                     status: 405
                     error: Method Not Allowed
-                    path: /api/v1/users
+                    path: /api/v1/user/1
+      security:
+        - apikey: []
     get:
       tags:
         - users
@@ -230,7 +223,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
               examples:
-                Invalid-UserId:
+                Invalid-Request:
                   value:
                     timestamp: 2024-06-13T13:59:43.710+00:00
                     status: 400
@@ -238,6 +231,17 @@ paths:
                     path: /api/v1/user/r4
         '404':
           description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Invalid-UserId:
+                  value:
+                    timestamp: 2024-06-13T13:59:43.710+00:00
+                    status: 404
+                    error: Not Found
+                    path: /api/v1/user/50
       security:
         - apikey: []
     put:
@@ -292,7 +296,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
               examples:
-                Invalid-UserId:
+                Invalid-Request:
                   value:
                     timestamp: 2024-06-13T13:59:43.710+00:00
                     status: 400
@@ -329,7 +333,18 @@ paths:
           example: 1
       responses:
         '204':
-          description: Successful Operation. No Content
+          description: Successful Operation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+              examples:
+                Successful Operation:
+                  value:
+                    timestamp: 2024-06-13T13:59:43.710+00:00
+                    status: 204
+                    message: Success
+                    path: /api/v1/user/r4
         '400':
           description: Bad Request
           content:
@@ -377,6 +392,11 @@ components:
           type: string
           example: john@email.com
     Error:
+      type: object
+      properties:
+        fieldname:
+          type: string
+    Response:
       type: object
       properties:
         fieldname:
